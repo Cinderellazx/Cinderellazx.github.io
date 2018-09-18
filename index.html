@@ -152,6 +152,138 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-流式布局" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>流式布局是百分比布局。</p>
+<p>左右定宽，中间自适应，为双飞翼布局，又称圣杯布局。</p>
+<h3 id="三栏布局"><a href="#三栏布局" class="headerlink" title="三栏布局"></a>三栏布局</h3><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1537085803211.png" alt="1537085803211"></p>
+<p>方法一(绝对定位)：</p>
+<p>​    左右定宽<code>40px</code>，绝对定位，左侧栏<code>left：0；</code>右侧栏<code>right：0；</code></p>
+<p>​    中间栏<code>width：100%； padding：0px  40px;</code></p>
+<p>方法二(浮动)：</p>
+<p>​    左右定宽<code>100px</code>，左边栏<code>float：left；</code>第二栏<code>float：right；</code></p>
+<p>​    第三栏<code>padding：0 100px;</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/16/流式布局/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-跨域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/15/跨域/">跨域</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/15/跨域/" class="archive-article-date">
+  	<time datetime="2018-09-15T12:45:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="为什么要用跨域的请求方式？"><a href="#为什么要用跨域的请求方式？" class="headerlink" title="为什么要用跨域的请求方式？"></a>为什么要用跨域的请求方式？</h2><h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><p>同源策略，是浏览器的一种安全机制。所谓同源，是指同域名，同协议，同端口号，三者中任意一个不同，则为不同源。如果数据请求的地址受到同源策略的限制，就需要跨域请求。</p>
+<h2 id="跨域请求方式"><a href="#跨域请求方式" class="headerlink" title="跨域请求方式"></a>跨域请求方式</h2><h3 id="一、cors-跨域资源共享"><a href="#一、cors-跨域资源共享" class="headerlink" title="一、cors(跨域资源共享)"></a>一、<code>cors</code>(跨域资源共享)</h3><p>​    其核心思想是在服务器端声明不用进行同源限制。</p>
+<p>​    服务器端需要添加如下响应头：</p>
+<p>​        header(‘Access-Control-Allow-origin:*’);    // 允许所有外部网站获取数据</p>
+<p>​        header(‘Access-Control-Allow-origin:url’);   // 只允许设置的url获取数据</p>
+<h2 id="二、jsonp跨域"><a href="#二、jsonp跨域" class="headerlink" title="二、jsonp跨域"></a>二、jsonp跨域</h2><p>​    具有src和href属性的标签都具有跨域请求的能力。jsonp就是利用了这个‘漏洞’实现跨域的。</p>
+<p>​    其核心思想是动态创建script标签，将要请求的url地址放在src中发送请求，拿到的数据为json对象，json对象的名称为callback。这些事情jQuery底层已经帮我们实现了。</p>
+<p>注意：</p>
+<ol>
+<li>由于利用的是src和href的漏洞，所以请求方式也只能是get,即type: ‘get’.</li>
+<li>需要与服务端约定好脚本执行的函数名，一般设置jsonp: ‘callback’.</li>
+<li>数据类型需设置为jsonp，即dataType: ‘jsonp’.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    url: <span class="string">'http://study.com/services.php'</span>,</span><br><span class="line">    type: <span class="string">'get'</span>,</span><br><span class="line">    dataType: <span class="string">'jsonp'</span>,</span><br><span class="line">    jsonp: <span class="string">'callback'</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// data 即为获取到的数据，此处可操作data</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)；</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/15/跨域/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
